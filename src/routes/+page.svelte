@@ -1,23 +1,145 @@
 <script>
+	import i18next from 'i18next';
+	import ru from '$lib/locales/ru.js';
+	import en from '$lib/locales/en.js';
 	import { onMount } from 'svelte';
 
 	onMount(() => {
+		i18next.on('languageChanged', changeContent);
+		function changeContent() {
+			document.getElementById('title').textContent = i18next.t('message:title');
+			document.getElementById('description').textContent = i18next.t('message:description');
+			document.getElementById('message-button').textContent = i18next.t('message:button');
+			document.querySelector('.form__header-title').textContent = i18next.t('form:title');
+			contacts();
+			workLike();
+			network();
+			workMode();
+			calendar();
+			communication();
+			preference();
+			formConfirmation();
+			document.getElementById('buttonSend').textContent = i18next.t('form:button.text');
+
+			function contacts() {
+				const contacts = document.getElementById('formContacts');
+				let items = contacts.querySelectorAll('.form__contacts-item-text');
+				let inputs = contacts.querySelectorAll('input');
+
+				items[0].textContent = i18next.t(`form:contacts.text`, { context: 'company' });
+				items[1].textContent = i18next.t(`form:contacts.text`, { context: 'address' });
+				items[2].textContent = i18next.t(`form:contacts.text`, { context: 'phone' });
+				items[3].textContent = i18next.t(`form:contacts.text`, { context: 'email' });
+
+				inputs[0].placeholder = i18next.t(`form:contacts.text`, { context: 'company' });
+				inputs[1].placeholder = i18next.t(`form:contacts.text`, { context: 'address' });
+				inputs[2].placeholder = i18next.t(`form:contacts.text`, { context: 'phone' });
+				inputs[3].placeholder = i18next.t(`form:contacts.text`, { context: 'email' });
+			}
+			function workLike() {
+				const container = document.getElementById('workLike');
+				let items = container.querySelectorAll('.form__work-like-label');
+				let inputs = container.querySelectorAll('.form__work-like-input');
+
+				container.querySelector('.form__work-like-text').textContent = i18next.t('form:work.title');
+
+				items[0].textContent = i18next.t(`form:work.text`, { context: 'physical' });
+				items[1].textContent = i18next.t(`form:work.text`, { context: 'company' });
+
+				inputs[0].placeholder = i18next.t(`form:work.input`, { context: 'physical' });
+				inputs[1].placeholder = i18next.t(`form:work.input`, { context: 'company' });
+			}
+			function network() {
+				const container = document.getElementById('formNetwork');
+				let items = container.querySelectorAll('.form__network-item-text');
+				let inputs = container.querySelectorAll('.form__network-item-input');
+
+				container.querySelector('.form__network-text').textContent =
+					i18next.t('form:network.title');
+
+				items[0].textContent = i18next.t(`form:network.text`, { context: 'instagram' });
+				items[1].textContent = i18next.t(`form:network.text`, { context: 'facebook' });
+				items[2].textContent = i18next.t(`form:network.text`, { context: 'telegram' });
+				items[3].textContent = i18next.t(`form:network.text`, { context: 'tiktok' });
+				items[4].textContent = i18next.t(`form:network.text`, { context: 'linkedin' });
+
+				inputs[0].placeholder = i18next.t(`form:network.placeholder`, { context: 'instagram' });
+				inputs[1].placeholder = i18next.t(`form:network.placeholder`, { context: 'facebook' });
+				inputs[2].placeholder = i18next.t(`form:network.placeholder`, { context: 'telegram' });
+				inputs[3].placeholder = i18next.t(`form:network.placeholder`, { context: 'tiktok' });
+				inputs[4].placeholder = i18next.t(`form:network.placeholder`, { context: 'linkedin' });
+			}
+			function workMode() {
+				const container = document.getElementById('formWorkMode');
+				let items = container.querySelectorAll('.form__work-mode-item');
+				let days = container.querySelectorAll('.form__work-mode-item-text');
+
+				container.querySelector('.form__work-mode-header-text').textContent =
+					i18next.t('form:workMode.title');
+
+				days[0].textContent = i18next.t(`form:workMode.day`, { context: 'monday' });
+				days[1].textContent = i18next.t(`form:workMode.day`, { context: 'tuesday' });
+				days[2].textContent = i18next.t(`form:workMode.day`, { context: 'wednesday' });
+				days[3].textContent = i18next.t(`form:workMode.day`, { context: 'thursday' });
+				days[4].textContent = i18next.t(`form:workMode.day`, { context: 'friday' });
+				days[5].textContent = i18next.t(`form:workMode.day`, { context: 'saturday' });
+				days[6].textContent = i18next.t(`form:workMode.day`, { context: 'sunday' });
+
+				items.forEach((el) => {
+					let times = el.querySelectorAll('.form__work-mode-item-content-line-text');
+					times[0].textContent = i18next.t(`form:workMode.time`, { context: 'open' });
+					times[1].textContent = i18next.t(`form:workMode.time`, { context: 'close' });
+				});
+			}
+			function calendar() {
+				const container = document.getElementById('formLinkCalendar');
+				let text = container.querySelector('.form__calendar-text');
+				let input = container.querySelector('.form__calendar-input');
+
+				text.textContent = i18next.t(`form:calendar.text`);
+				input.placeholder = i18next.t(`form:calendar.placeholder`);
+			}
+			function communication() {
+				const container = document.getElementById('communicationLanguages');
+
+				container.querySelector('.form__languages-text').textContent =
+					i18next.t(`form:communication.title`);
+
+				container.querySelector('.form__languages-item-another-text').textContent = i18next.t(
+					`form:communication.another`,
+					{ context: 'text' }
+				);
+
+				container.querySelector('.form__languages-item-another-input').placeholder = i18next.t(
+					`form:communication.another`,
+					{ context: 'placeholder' }
+				);
+			}
+			function preference() {
+				const container = document.getElementById('formSurvey');
+				container.querySelector('.form__preferences-text').textContent =
+					i18next.t(`form:preference.text`);
+			}
+			function formConfirmation() {
+				const container = document.getElementById('formConfirmation');
+				container.querySelector('.form__confirmation-text').textContent =
+					i18next.t(`form:confirmation.text`);
+			}
+		}
+
 		const form = document.forms.myForm;
 		const btnSend = window.buttonSend;
 		const formCheckbox = window.showForm;
 		const switchLanguages = window.formLanguages;
 
-		window.addEventListener('load', (e) => {
-			btnSend.addEventListener('click', sendForm);
-
-			btnSend.addEventListener('click', checkForm);
-			// workPageLanguage();
-			formShow();
-			workSectionNetwor();
-			workSectionCommunication();
-			workSectionWorkLike();
-			workSectionOperatingMode();
-		});
+		btnSend.addEventListener('click', sendForm);
+		btnSend.addEventListener('click', checkForm);
+		workPageLanguage();
+		formShow();
+		workSectionNetwor();
+		workSectionCommunication();
+		workSectionWorkLike();
+		workSectionOperatingMode();
 
 		function formShow() {
 			window.addEventListener('resize', (e) => {
@@ -223,65 +345,48 @@
 			});
 		}
 
-		// function workPageLanguage() {
-		// 	let language = startPageLanguage();
-		// 	switchLanguages.addEventListener('input', changeSelectLanguages);
+		function workPageLanguage() {
+			const language = startPageLanguage();
+			console.log(language);
+			switchLanguages.addEventListener('input', changeSelectLanguages);
 
-		// 	function changeSelectLanguages(e) {
-		// 		const select = e.target;
-		// 		const language = select.options[select.selectedIndex].value;
-		// 		// changeContent(language)
-		// 		i18next.changeLanguage(language);
-		// 	}
+			i18next.init({
+				lng: language,
+				debug: true,
+				resources: {
+					en: en,
+					ru: ru
+				}
+			});
 
-		// 	function startPageLanguage() {
-		// 		const language = getPageLanguage();
-		// 		i18next.changeLanguage(language);
-		// 		switchLanguages.value = language;
+			function changeSelectLanguages(e) {
+				const select = e.target;
+				const language = select.options[select.selectedIndex].value;
+				i18next.changeLanguage(language);
+			}
 
-		// 		function getPageLanguage() {
-		// 			const browserLanguage = window.navigator.language;
-		// 			const availableLanguages = getLanguages();
-		// 			const language = availableLanguages.find((el) => el == browserLanguage) ?? 'en';
+			function startPageLanguage() {
+				let language = getPageLanguage();
+				// i18next.changeLanguage(language);
+				switchLanguages.value = language;
 
-		// 			function getLanguages() {
-		// 				const options = switchLanguages.querySelectorAll('option');
-		// 				let optionsValue = [];
-		// 				options.forEach((el) => optionsValue.push(el.value));
-		// 				return optionsValue;
-		// 			}
+				function getPageLanguage() {
+					const browserLanguage = window.navigator.language;
+					const availableLanguages = getLanguages();
+					const language = availableLanguages.find((el) => el == browserLanguage) ?? 'en';
 
-		// 			return language;
-		// 		}
-		// 	}
+					function getLanguages() {
+						const options = switchLanguages.querySelectorAll('option');
+						let optionsValue = [];
+						options.forEach((el) => optionsValue.push(el.value));
+						return optionsValue;
+					}
 
-		// 	// function changeContent(language) {
-
-		// 	// 	// const elements = document
-		// 	// 	// 	.querySelectorAll(`[data-content-${language}]`)
-		// 	// 	// 	.forEach(
-		// 	// 	// 		(el) =>
-		// 	// 	// 			(el.textContent =
-		// 	// 	// 				language == 'ru'
-		// 	// 	// 					? el.dataset.contentRu
-		// 	// 	// 					: language == 'pl'
-		// 	// 	// 					? el.dataset.contentPl
-		// 	// 	// 					: el.dataset.contentEn)
-		// 	// 	// 	)
-		// 	// 	// const elements = document
-		// 	// 	// 	.querySelectorAll(`[data-placeholder-${language}]`)
-		// 	// 	// 	.forEach(
-		// 	// 	// 		(el) =>
-		// 	// 	// 			(el.placeholder =
-		// 	// 	// 				language == 'ru'
-		// 	// 	// 					? el.dataset.placeholderRu
-		// 	// 	// 					: language == 'pl'
-		// 	// 	// 					? el.dataset.placeholderPl
-		// 	// 	// 					: el.dataset.placeholderEn)
-		// 	// 	// 	)
-		// 	// 	// form.style.height = `${form.scrollHeight}px`
-		// 	// }
-		// }
+					return language;
+				}
+				return language;
+			}
+		}
 	});
 </script>
 
@@ -294,7 +399,6 @@
 					<select class="header__language-select" name="" id="formLanguages">
 						<option class="header__language-option" value="ru"> ru </option>
 						<option class="header__language-option" value="en"> en </option>
-						<option class="header__language-option" value="pl"> pl </option>
 					</select>
 				</div>
 			</div>
@@ -305,30 +409,13 @@
 			<div class="message">
 				<input type="checkbox" id="showForm" />
 				<div class="message__inner">
-					<h2
-						id="title"
-						class="message__title"
-						data-content-ru="Сейчас сервис не работает"
-						data-content-en="The service is not working right now"
-					>
-						The service is not working right now
-					</h2>
-					<p
-						id="description"
-						class="message__description"
-						data-content-en="We are like bees working to start our hive
-						ju-ju-ju. For now you can register on our
-						website to get maximum effect for your
-						business."
-						data-content-ru="Мы как пчелки работаем над запуском нашего улья
-						жу-жу-жу. Пока вы можете зарегистрироваться на нашем
-						сайте, чтобы получить максимальный эффект для вашего
-						бизнеса."
-					>
+					<h2 id="title" class="message__title">The service is not working right now</h2>
+					<p id="description" class="message__description">
 						We are like bees working to start our hive ju-ju-ju. For now you can register on our
 						website to get maximum effect for your business.
 					</p>
 					<label
+						id="message-button"
 						for="showForm"
 						class="message__button button"
 						data-content-en="Registration"
@@ -340,33 +427,19 @@
 				<form action="" class="form" name="myForm">
 					<div class="form__inner">
 						<div class="form__header">
-							<h2
-								class="form__header-title"
-								data-content-ru="Регистрация"
-								data-content-en="Registration"
-							>
-								Регистрация
-							</h2>
+							<h2 class="form__header-title">Регистрация</h2>
 						</div>
 						<div class="form__content">
 							<div class="form__contacts" id="formContacts">
 								<div class="form__contacts-item">
 									<div class="form__contacts-item-header input-name">
-										<p
-											class="form__contacts-item-text"
-											data-content-ru="Название компании/мастера"
-											data-content-en="Company/craftsman name"
-										>
-											Название компании/мастера
-										</p>
+										<p class="form__contacts-item-text">Название компании/мастера</p>
 										<span class="form__required">*</span>
 									</div>
 
 									<input
 										type="text"
 										class="form__contacts-item-input form__input"
-										data-placeholder-en="Company name"
-										data-placeholder-ru="Название компании"
 										placeholder="Company name"
 										required
 									/>
@@ -375,40 +448,24 @@
 								<div class="form__contacts-items">
 									<div class="form__contacts-item">
 										<div class="form__contacts-item-header">
-											<p
-												class="form__contacts-item-text input-name"
-												data-content-ru="Адрес"
-												data-content-en="Address"
-											>
-												Адрес
-											</p>
+											<p class="form__contacts-item-text input-name">Адрес</p>
 										</div>
 
 										<input
 											type="text"
 											class="form__contacts-item-input form__input"
-											data-placeholder-en="Address"
-											data-placeholder-ru="Адрес"
 											placeholder="Address"
 										/>
 									</div>
 									<div class="form__contacts-item">
 										<div class="form__contacts-item-header input-name">
-											<p
-												class="form__contacts-item-text"
-												data-content-ru="Телефон"
-												data-content-en="Telephone"
-											>
-												Телефон
-											</p>
+											<p class="form__contacts-item-text">Телефон</p>
 											<span class="form__required">*</span>
 										</div>
 
 										<input
 											type="tel"
 											class="form__contacts-item-input form__input"
-											data-placeholder-en="Phone number"
-											data-placeholder-ru="Номер телефона"
 											placeholder="Phone number"
 											required
 										/>
@@ -417,21 +474,13 @@
 
 								<div class="form__contacts-item">
 									<div class="form__contacts-item-header input-name">
-										<p
-											class="form__contacts-item-text input-name"
-											data-content-ru="Email"
-											data-content-en="Email"
-										>
-											Email
-										</p>
+										<p class="form__contacts-item-text input-name">Email</p>
 										<span class="form__required">*</span>
 									</div>
 
 									<input
 										type="email"
 										class="form__contacts-item-input form__input"
-										data-placeholder-en="Email"
-										data-placeholder-ru="Email"
 										placeholder="Email"
 										required
 									/>
@@ -440,13 +489,7 @@
 
 							<div class="form__work-like" id="workLike">
 								<div class="form__work-like-header">
-									<p
-										class="form__work-like-text section-name"
-										data-content-ru="Вы работаете как:"
-										data-content-en="You work like:"
-									>
-										You work like:
-									</p>
+									<p class="form__work-like-text section-name">You work like:</p>
 									<span class="form__required">*</span>
 								</div>
 
@@ -461,21 +504,13 @@
 												required
 											/>
 											<label for="workLikePhysical" class="form__work-like-label">
-												<span
-													class="form__work-like-content-text form__text"
-													data-content-ru="Физ. лицо"
-													data-content-en="Physical person"
-												>
-													Физ. лицо
-												</span>
+												<span class="form__work-like-content-text form__text"> Физ. лицо </span>
 											</label>
 											<div class="form__work-like-input-container" id="data">
 												<p class="form__work-like-input-text">PESEL</p>
 												<input
 													class="form__work-like-input form__input"
 													type="number"
-													data-placeholder-en="Enter 11 numbers"
-													data-placeholder-ru="Введите 11 цифр"
 													placeholder="Enter 11 numbers"
 												/>
 											</div>
@@ -488,21 +523,13 @@
 												id="workLikeCompany"
 											/>
 											<label for="workLikeCompany" class="form__work-like-label">
-												<span
-													class="form__work-like-content-text form__text"
-													data-content-ru="Компания"
-													data-content-en="Company"
-												>
-													Компания
-												</span>
+												<span class="form__work-like-content-text form__text"> Компания </span>
 											</label>
 											<div class="form__work-like-input-container" id="data">
 												<p class="form__work-like-input-text">NIP</p>
 												<input
 													class="form__work-like-input form__input"
 													type="number"
-													data-placeholder-en="Enter 10 numbers"
-													data-placeholder-ru="Введите 10 цифр"
 													placeholder="Enter 10 numbers"
 												/>
 											</div>
@@ -512,26 +539,17 @@
 							</div>
 
 							<div class="form__network" id="formNetwork">
-								<p
-									class="form__network-text section-name"
-									data-content-ru="Соцсети"
-									data-content-en="Social network"
-								>
-									соцсети
-								</p>
+								<p class="form__network-text section-name">Соц. сети</p>
 								<div class="form__network-items" id="networkContainer">
 									<div class="form__network-item">
 										<label class="form__network-item-container">
 											<input class="form__network-item-checkbox custom-checkbox" type="checkbox" />
-
 											<span class="form__network-item-text form__text">Instagram</span>
 										</label>
 										<input
 											type="text"
 											class="form__network-item-input form__input"
 											disabled
-											data-placeholder-ru="Cсылка"
-											data-placeholder-en="Link"
 											placeholder="ссылка"
 										/>
 									</div>
@@ -539,15 +557,12 @@
 									<div class="form__network-item">
 										<label class="form__network-item-container">
 											<input class="form__network-item-checkbox custom-checkbox" type="checkbox" />
-
 											<span class="form__network-item-text form__text">Facebook</span>
 										</label>
 										<input
 											type="text"
 											class="form__network-item-input form__input"
 											disabled
-											data-placeholder-ru="Cсылка"
-											data-placeholder-en="Link"
 											placeholder="ссылка"
 										/>
 									</div>
@@ -555,15 +570,12 @@
 									<div class="form__network-item">
 										<label class="form__network-item-container">
 											<input class="form__network-item-checkbox custom-checkbox" type="checkbox" />
-
 											<span class="form__network-item-text form__text">Telegram</span>
 										</label>
 										<input
 											type="text"
 											class="form__network-item-input form__input"
 											disabled
-											data-placeholder-ru="Cсылка"
-											data-placeholder-en="Link"
 											placeholder="ссылка"
 										/>
 									</div>
@@ -571,15 +583,12 @@
 									<div class="form__network-item">
 										<label class="form__network-item-container">
 											<input class="form__network-item-checkbox custom-checkbox" type="checkbox" />
-
 											<span class="form__network-item-text form__text">Tiktok</span>
 										</label>
 										<input
 											type="text"
 											class="form__network-item-input form__input"
 											disabled
-											data-placeholder-ru="Cсылка"
-											data-placeholder-en="Link"
 											placeholder="ссылка"
 										/>
 									</div>
@@ -587,15 +596,12 @@
 									<div class="form__network-item">
 										<label class="form__network-item-container">
 											<input class="form__network-item-checkbox custom-checkbox" type="checkbox" />
-
 											<span class="form__network-item-text form__text">Linkedin</span>
 										</label>
 										<input
 											type="text"
 											class="form__network-item-input form__input"
 											disabled
-											data-placeholder-ru="Cсылка"
-											data-placeholder-en="Link"
 											placeholder="ссылка"
 										/>
 									</div>
@@ -605,13 +611,7 @@
 							<div class="form__work-mode" id="formWorkMode">
 								<input type="checkbox" class="form__checkbox" id="workModeShow" />
 								<label for="workModeShow" class="form__work-mode-header">
-									<span
-										class="form__work-mode-header-text"
-										data-content-ru="Режим работы"
-										data-content-en="Оperating mode"
-									>
-										Оperating mode
-									</span>
+									<span class="form__work-mode-header-text"> Оperating mode </span>
 									<span class="form__work-mode-header-icon">
 										<svg viewBox="0 0 24 24" fill="none">
 											<path
@@ -627,33 +627,15 @@
 									<div class="form__work-mode-item">
 										<input type="checkbox" class="form__work-mode-item-checkbox" />
 										<div class="form__work-mode-item-info">
-											<span
-												class="form__work-mode-item-text"
-												data-content-ru="Понедельник"
-												data-content-en="Monday"
-											>
-												Monday
-											</span>
+											<span class="form__work-mode-item-text"> Monday </span>
 										</div>
 										<div class="form__work-mode-item-content">
 											<div class="form__work-mode-item-content-line">
-												<span
-													class="form__work-mode-item-content-line-text"
-													data-content-ru="Время открытия"
-													data-content-en="Open Time"
-												>
-													Open Time
-												</span>
+												<span class="form__work-mode-item-content-line-text"> Open Time </span>
 												<input class="form__work-mode-item-content-line-input" type="time" />
 											</div>
 											<div class="form__work-mode-item-content-line">
-												<span
-													class="form__work-mode-item-content-line-text"
-													data-content-ru="Время закрытия"
-													data-content-en="Close Time"
-												>
-													Close Time
-												</span>
+												<span class="form__work-mode-item-content-line-text"> Close Time </span>
 												<input class="form__work-mode-item-content-line-input" type="time" />
 											</div>
 										</div>
@@ -662,33 +644,15 @@
 									<div class="form__work-mode-item">
 										<input type="checkbox" class="form__work-mode-item-checkbox" />
 										<div for="workModeMonday" class="form__work-mode-item-info">
-											<span
-												class="form__work-mode-item-text"
-												data-content-ru="Вторник"
-												data-content-en="Tuesday"
-											>
-												Tuesday
-											</span>
+											<span class="form__work-mode-item-text"> Tuesday </span>
 										</div>
 										<div class="form__work-mode-item-content">
 											<div class="form__work-mode-item-content-line">
-												<span
-													class="form__work-mode-item-content-line-text"
-													data-content-ru="Время открытия"
-													data-content-en="Open Time"
-												>
-													Open Time
-												</span>
+												<span class="form__work-mode-item-content-line-text"> Open Time </span>
 												<input class="form__work-mode-item-content-line-input" type="time" />
 											</div>
 											<div class="form__work-mode-item-content-line">
-												<span
-													class="form__work-mode-item-content-line-text"
-													data-content-ru="Время закрытия"
-													data-content-en="Close Time"
-												>
-													Close Time
-												</span>
+												<span class="form__work-mode-item-content-line-text"> Close Time </span>
 												<input class="form__work-mode-item-content-line-input" type="time" />
 											</div>
 										</div>
@@ -697,33 +661,15 @@
 									<div class="form__work-mode-item">
 										<input type="checkbox" class="form__work-mode-item-checkbox" />
 										<div class="form__work-mode-item-info">
-											<span
-												class="form__work-mode-item-text"
-												data-content-ru="Среда"
-												data-content-en="Wednesday"
-											>
-												Wednesday
-											</span>
+											<span class="form__work-mode-item-text"> Wednesday </span>
 										</div>
 										<div class="form__work-mode-item-content">
 											<div class="form__work-mode-item-content-line">
-												<span
-													class="form__work-mode-item-content-line-text"
-													data-content-ru="Время открытия"
-													data-content-en="Open Time"
-												>
-													Open Time
-												</span>
+												<span class="form__work-mode-item-content-line-text"> Open Time </span>
 												<input class="form__work-mode-item-content-line-input" type="time" />
 											</div>
 											<div class="form__work-mode-item-content-line">
-												<span
-													class="form__work-mode-item-content-line-text"
-													data-content-ru="Время закрытия"
-													data-content-en="Close Time"
-												>
-													Close Time
-												</span>
+												<span class="form__work-mode-item-content-line-text"> Close Time </span>
 												<input class="form__work-mode-item-content-line-input" type="time" />
 											</div>
 										</div>
@@ -732,33 +678,15 @@
 									<div class="form__work-mode-item">
 										<input type="checkbox" class="form__work-mode-item-checkbox" />
 										<div class="form__work-mode-item-info">
-											<span
-												class="form__work-mode-item-text"
-												data-content-ru="Четверг"
-												data-content-en="Thursday"
-											>
-												Thursday
-											</span>
+											<span class="form__work-mode-item-text"> Thursday </span>
 										</div>
 										<div class="form__work-mode-item-content">
 											<div class="form__work-mode-item-content-line">
-												<span
-													class="form__work-mode-item-content-line-text"
-													data-content-ru="Время открытия"
-													data-content-en="Open Time"
-												>
-													Open Time
-												</span>
+												<span class="form__work-mode-item-content-line-text"> Open Time </span>
 												<input class="form__work-mode-item-content-line-input" type="time" />
 											</div>
 											<div class="form__work-mode-item-content-line">
-												<span
-													class="form__work-mode-item-content-line-text"
-													data-content-ru="Время закрытия"
-													data-content-en="Close Time"
-												>
-													Close Time
-												</span>
+												<span class="form__work-mode-item-content-line-text"> Close Time </span>
 												<input class="form__work-mode-item-content-line-input" type="time" />
 											</div>
 										</div>
@@ -767,33 +695,15 @@
 									<div class="form__work-mode-item">
 										<input type="checkbox" class="form__work-mode-item-checkbox" />
 										<div class="form__work-mode-item-info">
-											<span
-												class="form__work-mode-item-text"
-												data-content-ru="Пятница"
-												data-content-en="Friday"
-											>
-												Friday
-											</span>
+											<span class="form__work-mode-item-text"> Friday </span>
 										</div>
 										<div class="form__work-mode-item-content">
 											<div class="form__work-mode-item-content-line">
-												<span
-													class="form__work-mode-item-content-line-text"
-													data-content-ru="Время открытия"
-													data-content-en="Open Time"
-												>
-													Open Time
-												</span>
+												<span class="form__work-mode-item-content-line-text"> Open Time </span>
 												<input class="form__work-mode-item-content-line-input" type="time" />
 											</div>
 											<div class="form__work-mode-item-content-line">
-												<span
-													class="form__work-mode-item-content-line-text"
-													data-content-ru="Время закрытия"
-													data-content-en="Close Time"
-												>
-													Close Time
-												</span>
+												<span class="form__work-mode-item-content-line-text"> Close Time </span>
 												<input class="form__work-mode-item-content-line-input" type="time" />
 											</div>
 										</div>
@@ -802,33 +712,15 @@
 									<div class="form__work-mode-item">
 										<input type="checkbox" class="form__work-mode-item-checkbox" />
 										<div class="form__work-mode-item-info">
-											<span
-												class="form__work-mode-item-text"
-												data-content-ru="Суббота"
-												data-content-en="Saturday"
-											>
-												Saturday
-											</span>
+											<span class="form__work-mode-item-text"> Saturday </span>
 										</div>
 										<div class="form__work-mode-item-content">
 											<div class="form__work-mode-item-content-line">
-												<span
-													class="form__work-mode-item-content-line-text"
-													data-content-ru="Время открытия"
-													data-content-en="Open Time"
-												>
-													Open Time
-												</span>
+												<span class="form__work-mode-item-content-line-text"> Open Time </span>
 												<input class="form__work-mode-item-content-line-input" type="time" />
 											</div>
 											<div class="form__work-mode-item-content-line">
-												<span
-													class="form__work-mode-item-content-line-text"
-													data-content-ru="Время закрытия"
-													data-content-en="Close Time"
-												>
-													Close Time
-												</span>
+												<span class="form__work-mode-item-content-line-text"> Close Time </span>
 												<input class="form__work-mode-item-content-line-input" type="time" />
 											</div>
 										</div>
@@ -837,33 +729,15 @@
 									<div class="form__work-mode-item">
 										<input type="checkbox" class="form__work-mode-item-checkbox" />
 										<div class="form__work-mode-item-info">
-											<span
-												class="form__work-mode-item-text"
-												data-content-ru="Воскресенье"
-												data-content-en="Sunday"
-											>
-												Sunday
-											</span>
+											<span class="form__work-mode-item-text"> Sunday </span>
 										</div>
 										<div class="form__work-mode-item-content">
 											<div class="form__work-mode-item-content-line">
-												<span
-													class="form__work-mode-item-content-line-text"
-													data-content-ru="Время открытия"
-													data-content-en="Open Time"
-												>
-													Open Time
-												</span>
+												<span class="form__work-mode-item-content-line-text"> Open Time </span>
 												<input class="form__work-mode-item-content-line-input" type="time" />
 											</div>
 											<div class="form__work-mode-item-content-line">
-												<span
-													class="form__work-mode-item-content-line-text"
-													data-content-ru="Время закрытия"
-													data-content-en="Close Time"
-												>
-													Close Time
-												</span>
+												<span class="form__work-mode-item-content-line-text"> Close Time </span>
 												<input class="form__work-mode-item-content-line-input" type="time" />
 											</div>
 										</div>
@@ -871,75 +745,41 @@
 								</div>
 							</div>
 
-							<div class="form__calendar">
-								<p
-									class="form__calendar-text section-name"
-									data-content-ru="Ссылка на Гугл календарь"
-									data-content-en="Link to Google calendar"
-								>
-									Ссылка на Гугл календарь
-								</p>
+							<div class="form__calendar" id="formLinkCalendar">
+								<p class="form__calendar-text section-name">Link to Google calendar</p>
 								<input
 									id="inputLinkCalendar"
 									type="url"
 									class="form__calendar-input form__input"
-									data-placeholder-ru="Ссылка на Гугл календарь"
-									data-placeholder-en="link to Google calendar"
-									placeholder="ссылка на Гугл календарь"
+									placeholder="link to Google calendar"
 								/>
 							</div>
 
 							<div class="form__languages-container" id="communicationLanguages">
-								<p
-									class="form__languages-text section-name"
-									data-content-ru="Языки комуникациии"
-									data-content-en="Communication languages"
-								>
-									Языки комуникациии
-								</p>
+								<p class="form__languages-text section-name">Языки комуникациии</p>
 								<div class="form__languages-items">
 									<label class="form__languages-item">
 										<input type="checkbox" class="form__languages-item-checkbox custom-checkbox" />
-										<span class="form__languages-item-image">
-											<span class="form__languages-item-image-shadow"></span>
-											<img src="/img/flag-poland.webp" alt="" />
-										</span>
 										<span class="form__languages-item-text form__text">Polski</span>
 									</label>
 
 									<label class="form__languages-item">
 										<input type="checkbox" class="form__languages-item-checkbox custom-checkbox" />
-										<span class="form__languages-item-image">
-											<span class="form__languages-item-image-shadow"></span>
-											<img src="/img/flag-belarus.webp" alt="" />
-										</span>
 										<span class="form__languages-item-text form__text">Беларуская</span>
 									</label>
 
 									<label class="form__languages-item">
 										<input type="checkbox" class="form__languages-item-checkbox custom-checkbox" />
-										<span class="form__languages-item-image">
-											<span class="form__languages-item-image-shadow"></span>
-											<img src="/img/flag-ukraine.webp" alt="" />
-										</span>
 										<span class="form__languages-item-text form__text">Українська</span>
 									</label>
 
 									<label class="form__languages-item">
 										<input type="checkbox" class="form__languages-item-checkbox custom-checkbox" />
-										<span class="form__languages-item-image">
-											<span class="form__languages-item-image-shadow"></span>
-											<img src="/img/flag-russian.webp" alt="" />
-										</span>
 										<span class="form__languages-item-text form__text">Русский</span>
 									</label>
 
 									<label class="form__languages-item">
 										<input type="checkbox" class="form__languages-item-checkbox custom-checkbox" />
-										<span class="form__languages-item-image">
-											<span class="form__languages-item-image-shadow"></span>
-											<img src="/img/flag-england.webp" alt="" />
-										</span>
 										<span class="form__languages-item-text form__text">English</span>
 									</label>
 								</div>
@@ -951,28 +791,21 @@
 											class="form__languages-item-another-checkbox form__languages-item-checkbox custom-checkbox"
 										/>
 										<span
-											class="form__languages-item-text form__text"
-											data-content-en="Another"
-											data-content-ru="Другой">Another</span
+											class="form__languages-item-text form__text form__languages-item-another-text"
+											>Another</span
 										>
 									</label>
 									<input
 										class="form__languages-item-another-input form__input"
 										type="text"
 										disabled
-										data-placeholder-en="Enter other languages"
-										data-placeholder-ru="Введите другие языки"
 										placeholder="Enter other languages"
 									/>
 								</div>
 							</div>
 
 							<div class="form__preferences" id="formSurvey">
-								<p
-									class="form__preferences-text form__text"
-									data-content-ru="Выберите к какой категории соответствует ваша компания (можно выбрать несколько вариантов):"
-									data-content-en="Select which category your company belongs to (you can select several options):"
-								>
+								<p class="form__preferences-text form__text">
 									Select which category your company belongs to (you can select several options):
 								</p>
 
@@ -1026,11 +859,7 @@
 									required
 								/>
 								<div class="form__confirmation-text-container">
-									<span
-										class="form__confirmation-text"
-										data-content-ru="Даю согласие на публикацию предоставленных данных на ресурсах YOOHIVE.COM (бот, сайт, соцсети)"
-										data-content-en="I agree to the publication of the provided data on YOOHIVE.COM resources (bot, website, social network)"
-									>
+									<span class="form__confirmation-text">
 										I agree to the publication of the provided data on YOOHIVE.COM resources (bot,
 										website, social network)
 									</span>
@@ -1038,14 +867,7 @@
 								</div>
 							</label>
 
-							<button
-								class="button"
-								id="buttonSend"
-								data-content-en="Registration"
-								data-content-ru="Регистрация"
-							>
-								Registration
-							</button>
+							<button class="button" id="buttonSend">Registration</button>
 						</div>
 					</div>
 				</form>
@@ -1060,6 +882,11 @@
 </div>
 
 <style>
+	.main-background {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+	}
 	.page {
 		flex: content;
 		display: flex;
