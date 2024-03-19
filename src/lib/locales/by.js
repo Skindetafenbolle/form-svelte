@@ -1,69 +1,69 @@
 let by = {
 	message: {
-		title: 'Сейчас сервис не работает',
+		title: 'Цяпер сэрвіс не працуе',
 		description:
-			'Мы как пчелки работаем над запуском нашего улья жу-жу-жу. Пока вы можете зарегистрироваться на нашем сайте, чтобы получить максимальный эффект для вашего бизнеса.',
-		button: 'Зарегистрироваться'
+			'Мы як пчолкі працуем над запускам нашага вулля жу-жу-жу. Пакуль вы можаце зарэгістравацца на нашым сайце, каб атрымаць максімальны эфект для вашага бізнесу.',
+		button: 'Зарэгістравацца'
 	},
 	form: {
-		title: 'Регистрация',
+		title: 'Рэгістрацыя',
 		contacts: {
-			text_company: 'Название компании/мастера',
-			text_address: 'Адрес',
-			text_phone: 'Телефон',
+			text_company: 'Назва кампаніі/майстры',
+			text_address: 'Адрас',
+			text_phone: 'Тэлефон',
 			text_email: 'Email'
 		},
 		work: {
-			title: 'Вы работаете как:',
-			text_physical: 'Физ. лицо',
-			input_physical: 'Введите 11 цифр',
-			text_company: 'Компания',
-			input_company: 'Введите 10 цифр'
+			title: 'Вы працуеце як:',
+			text_physical: 'Фіз. асоба',
+			input_physical: 'Увядзіце 11 лічбаў',
+			text_company: 'Кампанія',
+			input_company: 'Увядзіце 10 лічбаў'
 		},
 		network: {
-			title: 'Соц. сети',
+			title: 'Сац. сеткі',
 			text_instagram: 'Instagram',
-			placeholder_instagram: 'Ссылка',
+			placeholder_instagram: 'Спасылка',
 			text_facebook: 'Facebook',
-			placeholder_facebook: 'Ссылка',
+			placeholder_facebook: 'Спасылка',
 			text_telegram: 'Telegram',
-			placeholder_telegram: 'Ссылка',
+			placeholder_telegram: 'Спасылка',
 			text_tiktok: 'TikTok',
-			placeholder_tiktok: 'Ссылка',
+			placeholder_tiktok: 'Спасылка',
 			text_linkedin: 'Linkedin',
-			placeholder_linkedin: 'Ссылка'
+			placeholder_linkedin: 'Спасылка'
 		},
 		workMode: {
-			title: 'Режим работы',
-			time_open: 'Время открытия',
-			time_close: 'Время закрытия',
-			day_monday: 'Понедельник',
-			day_tuesday: 'Вторник',
-			day_wednesday: 'Среда',
-			day_thursday: 'Четверг',
-			day_friday: 'Пятница',
-			day_saturday: 'Суббота',
-			day_sunday: 'Воскресенье'
+			title: 'Рэжым працы',
+			time_open: 'Час адкрыцця',
+			time_close: 'Час закрыцця',
+			day_monday: 'Панядзелак',
+			day_tuesday: 'Аўторак',
+			day_wednesday: 'Серада',
+			day_thursday: 'Чацвер',
+			day_friday: 'Пятніца',
+			day_saturday: 'Субота',
+			day_sunday: 'Нядзеля'
 		},
 		calendar: {
-			text: 'Ссылка на Гугл календарь',
-			placeholder: 'Ссылка'
+			text: 'Спасылка на Google каляндар',
+			placeholder: 'Спасылка'
 		},
 		communication: {
-			title: 'Языки комуникациии',
-			another_text: 'Другой',
-			another_placeholder: 'Введите другие языки'
+			title: 'Мовы камунікацыі',
+			another_text: 'Іншы',
+			another_placeholder: 'Увядзіце іншыя мовы'
 		},
 		preference: {
-			text: 'Выберите к какой категории соответствует ваша компания',
-			text_description: '(можно выбрать несколько вариантов)'
+			text: 'Абярыце да якой катэгорыі адпавядае ваша кампанія',
+			text_description: '(можна абраць некалькі варыянтаў)'
 		},
 		confirmation: {
-			text: 'Даю согласие на публикацию предоставленных данных на ресурсах YOOHIVE.COM',
-			text_description: '(бот, сайт, соцсети)'
+			text: 'Даю згоду на публікацыю прадстаўленых даных на рэсурсах YOOHIVE.COM',
+			text_description: '(бот, сайт, сацсеткі)'
 		},
 		button: {
-			text: 'Регистрация'
+			text: 'Рэгістрацыя'
 		}
 	}
 };
