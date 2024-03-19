@@ -55,10 +55,12 @@ let en = {
 			another_placeholder: 'Enter other languages'
 		},
 		preference: {
-			text: 'Select which category your company belongs to (you can select several options):'
+			text: 'Select which category matches your company',
+			text_description: '(you can select several options)'
 		},
 		confirmation: {
-			text: 'I agree to the publication of the provided data on YOOHIVE.COM resources (bot, website, social network)'
+			text: 'I agree to the publication of the provided data on YOOHIVE.COM resources',
+			text_description: '(bot, website, social network)'
 		},
 		button: {
 			text: 'Registration'

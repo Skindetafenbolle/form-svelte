@@ -1,4 +1,4 @@
-let ru = {
+let by = {
 	message: {
 		title: 'Сейчас сервис не работает',
 		description:
@@ -68,4 +68,4 @@ let ru = {
 	}
 };
 
-export default ru;
+export default by;

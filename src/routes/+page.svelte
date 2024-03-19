@@ -2,6 +2,9 @@
 	import i18next from 'i18next';
 	import ru from '$lib/locales/ru.js';
 	import en from '$lib/locales/en.js';
+	import pl from '$lib/locales/en.js';
+	import ua from '$lib/locales/en.js';
+	import by from '$lib/locales/en.js';
 	import { onMount } from 'svelte';
 
 	onMount(() => {
@@ -117,13 +120,16 @@
 			}
 			function preference() {
 				const container = document.getElementById('formSurvey');
-				container.querySelector('.form__preferences-text').textContent =
-					i18next.t(`form:preference.text`);
+				const texts = container.querySelectorAll('.form__preferences-text');
+				texts[0].textContent = i18next.t(`form:preference.text`);
+				texts[1].textContent = i18next.t(`form:preference.text`, { context: 'description' });
 			}
 			function formConfirmation() {
 				const container = document.getElementById('formConfirmation');
-				container.querySelector('.form__confirmation-text').textContent =
-					i18next.t(`form:confirmation.text`);
+				const texts = container.querySelectorAll('.form__confirmation-text');
+
+				texts[0].textContent = i18next.t(`form:confirmation.text`);
+				texts[1].textContent = i18next.t(`form:confirmation.text`, { context: 'description' });
 			}
 		}
 
@@ -182,12 +188,16 @@
 				radio.addEventListener('input', (e) => {
 					if (radio.checked) {
 						inputs[i].setAttribute('required', true);
+						inputs[i].removeAttribute('disabled');
+
 						if (radio == radios[0]) {
 							inputs[1].removeAttribute('required');
 							inputs[1].classList.remove('invalid-input');
+							inputs[1].setAttribute('disabled', true);
 						} else {
 							inputs[0].removeAttribute('required');
 							inputs[0].classList.remove('invalid-input');
+							inputs[0].setAttribute('disabled', true);
 						}
 					}
 				})
@@ -355,7 +365,10 @@
 				debug: true,
 				resources: {
 					en: en,
-					ru: ru
+					ru: ru,
+					pl: pl,
+					ua: ua,
+					by: by
 				}
 			});
 
@@ -399,6 +412,9 @@
 					<select class="header__language-select" name="" id="formLanguages">
 						<option class="header__language-option" value="ru"> ru </option>
 						<option class="header__language-option" value="en"> en </option>
+						<option class="header__language-option" value="pl"> pl </option>
+						<option class="header__language-option" value="by"> by </option>
+						<option class="header__language-option" value="ua"> ua </option>
 					</select>
 				</div>
 			</div>
@@ -512,6 +528,7 @@
 													class="form__work-like-input form__input"
 													type="number"
 													placeholder="Enter 11 numbers"
+													disabled
 												/>
 											</div>
 										</div>
@@ -531,6 +548,7 @@
 													class="form__work-like-input form__input"
 													type="number"
 													placeholder="Enter 10 numbers"
+													disabled
 												/>
 											</div>
 										</div>
@@ -805,9 +823,12 @@
 							</div>
 
 							<div class="form__preferences" id="formSurvey">
-								<p class="form__preferences-text form__text">
-									Select which category your company belongs to (you can select several options):
-								</p>
+								<div class="form__preferences-header">
+									<p class="form__preferences-text form__text">
+										Select which category matches your company
+									</p>
+									<p class="form__preferences-text form__text"></p>
+								</div>
 
 								<div class="form__preferences-items">
 									<label class="form__preferences-item">
@@ -860,10 +881,10 @@
 								/>
 								<div class="form__confirmation-text-container">
 									<span class="form__confirmation-text">
-										I agree to the publication of the provided data on YOOHIVE.COM resources (bot,
-										website, social network)
+										I agree to the publication of the provided data on YOOHIVE.COM resources
 									</span>
 									<span class="form__required">*</span>
+									<p class="form__confirmation-text"></p>
 								</div>
 							</label>
 
@@ -965,6 +986,7 @@
 	}
 
 	.form {
+		height: 0;
 		max-height: 0;
 		display: none;
 		flex-direction: column;
@@ -978,7 +1000,7 @@
 	.form__content {
 		display: flex;
 		flex-direction: column;
-		gap: 30px;
+		gap: 40px;
 	}
 
 	/* header */
@@ -1086,11 +1108,6 @@
 	.form__work-like-radio {
 	}
 
-	.form__work-like-radio:checked ~ .form__work-like-input-container {
-		opacity: 1;
-		pointer-events: auto;
-	}
-
 	.form__work-like-content-text {
 		font-weight: 18px;
 		color: var(--color-text-primary);
@@ -1106,8 +1123,6 @@
 		flex: content;
 		display: flex;
 		gap: 15px;
-		opacity: 0.3;
-		pointer-events: none;
 	}
 
 	@media (min-width: 600px) {
@@ -1197,7 +1212,7 @@
 
 	.form__languages-text {
 		font-size: 20px;
-		margin-bottom: 8px;
+		margin-bottom: 20px;
 		color: var(--color-text-primary);
 	}
 
@@ -1288,10 +1303,12 @@
 
 	.form__preferences {
 	}
+
+	.form__preferences-header {
+		margin-bottom: 20px;
+	}
 	.form__preferences-text {
 		font-size: 18px;
-		text-align: center;
-		margin-bottom: 15px;
 		color: var(--color-text-primary);
 	}
 
@@ -1466,204 +1483,9 @@
 	}
 
 	.form__confirmation-text-container {
-		/* dis */
 	}
 
 	.form__confirmation-text {
-		text-align: center;
 		color: var(--color-text-primary);
-	}
-
-	:root {
-		--color-text-primary: #331e09;
-		--color-text-secondary: #ffffff;
-
-		--color-border-primary: #000000;
-		--color-border-secondary: #ffd883;
-		--color-invalid: red;
-
-		--color-bg-primary: #fff7d284;
-		--color-bg-secondary: #ffffff;
-		--color-bg-third: #fefbed84;
-		--color-bg-button: #2f487e;
-
-		--input-border: none;
-		--input-bg: var(--color-bg-secondary);
-
-		--border-primary: 1px solid var(--color-border-secondary);
-	}
-
-	.main-background {
-		position: relative;
-		background-image: url(img/honeycomb-background.avif);
-	}
-	.main-background::after {
-		content: '';
-		position: absolute;
-		left: 0;
-		top: 0;
-		width: 100%;
-		height: 100%;
-		background: #ffffffd5;
-	}
-
-	.form__input {
-		display: block;
-		width: 100%;
-		padding: 15px 20px;
-		font-size: 18px;
-		border: var(--input-border);
-		border-radius: 50px;
-	}
-
-	.button {
-		padding: 20px 40px;
-		font-size: 22px;
-		max-width: 400px;
-		margin: 0 auto;
-		border-radius: 40px;
-		border: none;
-		background: var(--color-bg-button);
-		cursor: pointer;
-		color: var(--color-text-secondary);
-		transition: 0.2s;
-	}
-
-	.button:hover {
-		opacity: 0.9;
-	}
-
-	.input-name {
-		font-weight: 500;
-		font-size: 18px;
-		/* color: red !important; */
-	}
-
-	.section-name {
-		font-weight: 500;
-		font-size: 20px;
-		/* color: green !important; */
-	}
-
-	.form__text {
-		font-size: 18px;
-		/* color: orange !important; */
-	}
-
-	.custom-checkbox {
-		min-width: 20px;
-		min-height: 20px;
-		margin: 0;
-		cursor: pointer;
-	}
-
-	.custom-radio {
-		min-width: 20px;
-		min-height: 20px;
-		margin: 0;
-	}
-	.invalid-input {
-		border: 1px solid var(--color-invalid);
-	}
-	.invalid-checkbox {
-		outline: 1px solid var(--color-invalid);
-	}
-
-	.footer {
-		position: relative;
-		z-index: 2;
-	}
-	.footer__inner {
-		padding: 15px 20px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		background: var(--color-bg-third);
-		border-radius: 50px;
-		backdrop-filter: blur(5px);
-		border: var(--border-primary);
-	}
-	@media (min-width: 600px) {
-		.footer__inner {
-			margin: 30px;
-		}
-	}
-
-	@media (max-width: 600px) {
-		.footer__inner {
-			margin: 20px 10px;
-		}
-	}
-
-	.footer__text {
-		font-size: 18px;
-		color: var(--color-text-primary);
-	}
-
-	.header {
-		position: relative;
-		z-index: 2;
-	}
-
-	.header__inner {
-		padding: 10px 30px;
-		/* margin: 30px; */
-		border-radius: 50px;
-		background: var(--color-bg-third);
-		backdrop-filter: blur(5px);
-		border: var(--border-primary);
-	}
-
-	@media (min-width: 600px) {
-		.header__inner {
-			margin: 30px;
-		}
-	}
-
-	@media (max-width: 600px) {
-		.header__inner {
-			margin: 20px 10px;
-		}
-	}
-
-	.header__content {
-		align-items: center;
-		justify-content: space-between;
-		display: flex;
-		gap: 15px;
-	}
-
-	.header__logo {
-		font-size: 36px;
-		font-weight: 700;
-		color: var(--color-text-primary);
-	}
-
-	.header__language {
-		display: flex;
-		align-items: center;
-		gap: 10px;
-	}
-
-	.header__language-text {
-		font-size: 18px;
-		font-weight: 500;
-		color: var(--color-text-secondary);
-	}
-
-	.header__language-select {
-		border-radius: 30px;
-		font-family: sans-serif;
-		border: var(--border-primary);
-		font-size: 18px;
-		font-weight: 500;
-		padding: 5px 10px;
-		cursor: pointer;
-		background: var(--color-bg-primary);
-		color: var(--color-text-primary);
-	}
-
-	.header__language-option {
-		font-size: 20px;
 	}
 </style>
