@@ -204,9 +204,63 @@
 			);
 		}
 
-		function sendForm(e) {
-			let formData = getFormData();
+		function transformFormData(formData) {
+			const transformedData = {
+				name: formData.contents.name,
+				address: formData.contents.address,
+				phones: [formData.contents.tell],
+				description: formData.contents.mail,
+				images: [],
+				schedule: formData.workDays,
+				services: [],
+				affiliation: formData.workLike.nip,
+				socialMediaLinks: [formData.networkLinks],
+				specialTags: [],
+				languages: []
+			};
 
+			for (const key in formData.survey) {
+				if (formData.survey.hasOwnProperty(key) && formData.survey[key]) {
+					transformedData.specialTags.push(key);
+				}
+			}
+
+			for (const key in formData.languages) {
+				if (formData.languages.hasOwnProperty(key) && formData.languages[key]) {
+					transformedData.languages.push(key);
+				}
+			}
+
+			return [transformedData];
+		}
+
+		async function sendForm(e) {
+			console.log('success')
+
+			e.preventDefault();
+
+			let formData = getFormData();
+			let transformedData = transformFormData(formData);
+
+			console.log(formData)
+			console.log(transformedData)
+			try {
+				const response = await fetch('https://servicesserver.onrender.com/api/company/createCompany/site/withoutCategory', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify(transformedData)
+				});
+
+				if (response.ok) {
+					console.log('Данные успешно отправлены на сервер');
+				} else {
+					console.error('Ошибка при отправке данных на сервер:', response.status);
+				}
+			} catch (error) {
+				console.error('Произошла ошибка:', error);
+			}
 			function getFormData() {
 				const contents = getDataFromContents('formContacts');
 				const workLike = getWorkLike('workLike');
@@ -217,7 +271,17 @@
 				const survey = getPollResponse('formSurvey');
 				const confirmation = window.formConfirmation.checked;
 
-				return {};
+				return {
+					contents,
+					workLike,
+					networkLinks,
+					workDays,
+					calendar,
+					languages,
+					survey,
+					confirmation
+				};
+
 
 				function getDataFromContents(id) {
 					const container = form.querySelector(`#${id}`);
@@ -888,7 +952,7 @@
 								</div>
 							</label>
 
-							<button class="button" id="buttonSend">Registration</button>
+							<button onclick="sendForm(event)" class="button" id="buttonSend">Registration</button>
 						</div>
 					</div>
 				</form>
