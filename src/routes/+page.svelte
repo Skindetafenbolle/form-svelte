@@ -2,9 +2,9 @@
 	import i18next from 'i18next';
 	import ru from '$lib/locales/ru.js';
 	import en from '$lib/locales/en.js';
-	import pl from '$lib/locales/en.js';
-	import ua from '$lib/locales/en.js';
-	import by from '$lib/locales/en.js';
+	import pl from '$lib/locales/pl.js';
+	import ua from '$lib/locales/ua.js';
+	import by from '$lib/locales/by.js';
 	import { onMount } from 'svelte';
 
 	onMount(() => {
@@ -380,7 +380,6 @@
 
 			function startPageLanguage() {
 				let language = getPageLanguage();
-				// i18next.changeLanguage(language);
 				switchLanguages.value = language;
 
 				function getPageLanguage() {

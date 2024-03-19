@@ -1,69 +1,69 @@
 let pl = {
 	message: {
-		title: 'Сейчас сервис не работает',
+		title: 'Usługa nie działa w tej chwili',
 		description:
-			'Мы как пчелки работаем над запуском нашего улья жу-жу-жу. Пока вы можете зарегистрироваться на нашем сайте, чтобы получить максимальный эффект для вашего бизнеса.',
-		button: 'Зарегистрироваться'
+			'Jesteśmy jak pszczoły pracujące nad tym, żeby nasz ul działał, ju-ju-ju. Już teraz możesz zarejestrować się na naszej stronie, aby uzyskać maksymalny efekt dla swojego biznesu.',
+		button: 'Rejestr'
 	},
 	form: {
-		title: 'Регистрация',
+		title: 'Rejestr',
 		contacts: {
-			text_company: 'Название компании/мастера',
-			text_address: 'Адрес',
-			text_phone: 'Телефон',
-			text_email: 'Email'
+			text_company: 'Nazwa firmy/rzemieślnika',
+			text_address: 'Adres',
+			text_phone: 'Telefon',
+			text_email: 'E-mail'
 		},
 		work: {
-			title: 'Вы работаете как:',
-			text_physical: 'Физ. лицо',
-			input_physical: 'Введите 11 цифр',
-			text_company: 'Компания',
-			input_company: 'Введите 10 цифр'
+			title: 'Pracujesz jak:',
+			text_physical: 'Fiz. twarz',
+			input_physical: 'Wprowadź 11 cyfr',
+			text_company: 'Firma',
+			input_company: 'Wprowadź 10 cyfr'
 		},
 		network: {
-			title: 'Соц. сети',
-			text_instagram: 'Instagram',
-			placeholder_instagram: 'Ссылка',
+			title: 'Społeczny sieci',
+			text_instagram: 'Instagrama',
+			placeholder_instagram: 'Połączyć',
 			text_facebook: 'Facebook',
-			placeholder_facebook: 'Ссылка',
+			placeholder_facebook: 'Połączyć',
 			text_telegram: 'Telegram',
-			placeholder_telegram: 'Ссылка',
+			placeholder_telegram: 'Połączyć',
 			text_tiktok: 'TikTok',
-			placeholder_tiktok: 'Ссылка',
+			placeholder_tiktok: 'Połączyć',
 			text_linkedin: 'Linkedin',
-			placeholder_linkedin: 'Ссылка'
+			placeholder_linkedin: 'Połączyć'
 		},
 		workMode: {
-			title: 'Режим работы',
-			time_open: 'Время открытия',
-			time_close: 'Время закрытия',
-			day_monday: 'Понедельник',
-			day_tuesday: 'Вторник',
-			day_wednesday: 'Среда',
-			day_thursday: 'Четверг',
-			day_friday: 'Пятница',
-			day_saturday: 'Суббота',
-			day_sunday: 'Воскресенье'
+			title: 'Tryb pracy',
+			time_open: 'Czas otwarcia',
+			time_close: 'Czas zamknięcia',
+			day_monday: 'Poniedziałek',
+			day_tuesday: 'Wtorek',
+			day_wednesday: 'Środa',
+			day_thursday: 'Czwartek',
+			day_friday: 'Piątek',
+			day_saturday: 'Sobota',
+			day_sunday: 'Niedziela'
 		},
 		calendar: {
-			text: 'Ссылка на Гугл календарь',
-			placeholder: 'Ссылка'
+			text: 'Link do kalendarza Google',
+			placeholder: 'Połączyć'
 		},
 		communication: {
-			title: 'Языки комуникациии',
-			another_text: 'Другой',
-			another_placeholder: 'Введите другие языки'
+			title: 'Języki komunikacji',
+			another_text: 'Inny',
+			another_placeholder: 'Wprowadź inne języki'
 		},
 		preference: {
-			text: 'Выберите к какой категории соответствует ваша компания',
-			text_description: '(можно выбрать несколько вариантов)'
+			text: 'Wybierz, do której kategorii należy Twoja firma',
+			text_description: '(możesz wybrać kilka opcji)'
 		},
 		confirmation: {
-			text: 'Даю согласие на публикацию предоставленных данных на ресурсах YOOHIVE.COM',
-			text_description: '(бот, сайт, соцсети)'
+			text: 'Wyrażam zgodę na publikację podanych danych w zasobach YOOHIVE.COM',
+			text_description: '(bot, strona internetowa, sieci społecznościowe)'
 		},
 		button: {
-			text: 'Регистрация'
+			text: 'Rejestracja'
 		}
 	}
 };
