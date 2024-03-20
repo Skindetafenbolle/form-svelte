@@ -209,7 +209,7 @@
 				name: formData.contents.name,
 				address: formData.contents.address,
 				phones: [formData.contents.tell],
-				description: formData.contents.mail,
+				email: formData.contents.mail,
 				images: [],
 				schedule: formData.workDays,
 				services: [],
