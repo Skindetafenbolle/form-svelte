@@ -138,7 +138,7 @@
 		const formCheckbox = window.showForm;
 		const switchLanguages = window.formLanguages;
 
-		btnSend.addEventListener('click', sendForm);
+		btnSend.addEventListener('submit', sendForm);
 		btnSend.addEventListener('click', checkForm);
 		workPageLanguage();
 		formShow();
@@ -204,9 +204,66 @@
 			);
 		}
 
-		function sendForm(e) {
-			let formData = getFormData();
+		function transformFormData(formData) {
+			const transformedData = {
+				name: formData.contents.name,
+				address: formData.contents.address,
+				phones: [formData.contents.tell],
+				email: formData.contents.mail,
+				images: [],
+				schedule: formData.workDays,
+				services: [],
+				affiliation: formData.workLike.nip,
+				socialMediaLinks: [formData.networkLinks],
+				specialTags: [],
+				languages: []
+			};
 
+			for (const key in formData.survey) {
+				if (formData.survey.hasOwnProperty(key) && formData.survey[key]) {
+					transformedData.specialTags.push(key);
+				}
+			}
+
+			for (const key in formData.languages) {
+				if (formData.languages.hasOwnProperty(key) && formData.languages[key]) {
+					transformedData.languages.push(key);
+				}
+			}
+
+			return [transformedData];
+		}
+
+		async function sendForm(e) {
+			console.log('success');
+
+			e.preventDefault();
+
+			let formData = getFormData();
+			let transformedData = transformFormData(formData);
+
+			console.log(formData);
+			console.log(transformedData);
+			try {
+				const response = await fetch(
+					'https://servicesserver.onrender.com/api/company/createCompany/site/withoutCategory',
+					{
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json'
+						},
+						body: JSON.stringify(transformedData)
+					}
+				);
+
+				if (response.ok) {
+					console.log('Данные успешно отправлены на сервер');
+				} else {
+					console.error('Ошибка при отправке данных на сервер:', response.status);
+				}
+			} catch (error) {
+				console.error('Произошла ошибка:', error);
+			}
 			function getFormData() {
 				const contents = getDataFromContents('formContacts');
 				const workLike = getWorkLike('workLike');
@@ -217,7 +274,16 @@
 				const survey = getPollResponse('formSurvey');
 				const confirmation = window.formConfirmation.checked;
 
-				return {};
+				return {
+					contents,
+					workLike,
+					networkLinks,
+					workDays,
+					calendar,
+					languages,
+					survey,
+					confirmation
+				};
 
 				function getDataFromContents(id) {
 					const container = form.querySelector(`#${id}`);
@@ -357,12 +423,12 @@
 
 		function workPageLanguage() {
 			const language = startPageLanguage();
-			console.log(language);
+			// console.log(language);
 			switchLanguages.addEventListener('input', changeSelectLanguages);
 
 			i18next.init({
 				lng: language,
-				debug: true,
+				// debug: true,
 				resources: {
 					en: en,
 					ru: ru,
@@ -429,17 +495,11 @@
 						We are like bees working to start our hive ju-ju-ju. For now you can register on our
 						website to get maximum effect for your business.
 					</p>
-					<label
-						id="message-button"
-						for="showForm"
-						class="message__button button"
-						data-content-en="Registration"
-						data-content-ru="Зарегистрироваться"
-					>
+					<label id="message-button" for="showForm" class="message__button button">
 						Registration
 					</label>
 				</div>
-				<form action="" class="form" name="myForm">
+				<form class="form" name="myForm" enctype="application/json">
 					<div class="form__inner">
 						<div class="form__header">
 							<h2 class="form__header-title">Регистрация</h2>
@@ -887,7 +947,7 @@
 								</div>
 							</label>
 
-							<button class="button" id="buttonSend">Registration</button>
+							<button class="button" type="submit" id="buttonSend">Registration</button>
 						</div>
 					</div>
 				</form>
