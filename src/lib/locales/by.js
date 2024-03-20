@@ -15,13 +15,13 @@ let by = {
 		},
 		work: {
 			title: 'Вы працуеце як:',
-			text_physical: 'Фіз. асоба',
+			text_physical: 'Фіз. твар',
 			input_physical: 'Увядзіце 11 лічбаў',
 			text_company: 'Кампанія',
 			input_company: 'Увядзіце 10 лічбаў'
 		},
 		network: {
-			title: 'Сац. сеткі',
+			title: 'Сацсеткі',
 			text_instagram: 'Instagram',
 			placeholder_instagram: 'Спасылка',
 			text_facebook: 'Facebook',
@@ -56,10 +56,11 @@ let by = {
 		},
 		preference: {
 			text: 'Абярыце да якой катэгорыі адпавядае ваша кампанія',
-			text_description: '(можна абраць некалькі варыянтаў)'
+			text_description: '(можна выбраць некалькі варыянтаў):',
+			companies: ['ecofriendly', 'petfriendly', 'childfriendly', 'inclusive']
 		},
 		confirmation: {
-			text: 'Даю згоду на публікацыю прадстаўленых даных на рэсурсах YOOHIVE.COM',
+			text: 'Даю згоду на публікацыю прадстаўленых дадзеных на рэсурсах YOOHIVE.COM',
 			text_description: '(бот, сайт, сацсеткі)'
 		},
 		button: {
