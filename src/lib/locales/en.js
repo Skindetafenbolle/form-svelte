@@ -1,20 +1,20 @@
 let en = {
 	message: {
-		title: 'The service is not working right now',
-		description:
-			'We are like bees working to start our hive ju-ju-ju. For now you can register on our website to get maximum effect for your business.',
+		title:
+			'YOOHIVE, a platform for entrepreneurs and their customers, will be launching here soon.',
+		description: `We're like bees still working on the launch of our hive, buh buh buh buh buh. But already now you can register on our website to be among the first to maximize the impact for your business.`,
 		button: 'Registration'
 	},
 	form: {
 		title: 'Registration',
 		contacts: {
-			text_company: 'Company/craftsman name',
+			text_company: 'Company/Master Name',
 			text_address: 'Address',
 			text_phone: 'Phone',
 			text_email: 'Email'
 		},
 		work: {
-			title: 'You work like:',
+			title: 'You work as:',
 			text_physical: 'Physical person',
 			input_physical: 'Enter 11 numbers',
 			text_company: 'Company',
@@ -34,7 +34,7 @@ let en = {
 			placeholder_linkedin: 'Link'
 		},
 		workMode: {
-			title: 'Оperating mode',
+			title: 'Mode of operation',
 			time_open: 'Open Time',
 			time_close: 'Close Time',
 			day_monday: 'Monday',
@@ -46,20 +46,21 @@ let en = {
 			day_sunday: 'Sunday'
 		},
 		calendar: {
-			text: 'Link to Google calendar',
+			text: 'Google calendar link',
 			placeholder: 'Link'
 		},
 		communication: {
 			title: 'Communication languages',
-			another: 'Another',
+			another: 'Other',
 			another_placeholder: 'Enter other languages'
 		},
 		preference: {
-			text: 'Select which category matches your company',
-			text_description: '(you can select several options)'
+			text: 'Choose to which category your company corresponds',
+			text_description: '(you can choose several options)',
+			companies: ['ecofriendly', 'petfriendly', 'childfriendly', 'inclusive']
 		},
 		confirmation: {
-			text: 'I agree to the publication of the provided data on YOOHIVE.COM resources',
+			text: 'I agree to publish the provided data on YOOHIVE.COM resources',
 			text_description: '(bot, website, social network)'
 		},
 		button: {

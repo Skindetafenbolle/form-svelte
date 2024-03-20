@@ -121,8 +121,14 @@
 			function preference() {
 				const container = document.getElementById('formSurvey');
 				const texts = container.querySelectorAll('.form__preferences-text');
+				const companies = container.querySelectorAll('.form__preferences-item-text');
+
 				texts[0].textContent = i18next.t(`form:preference.text`);
 				texts[1].textContent = i18next.t(`form:preference.text`, { context: 'description' });
+
+				companies.forEach(
+					(company, i) => (company.textContent = i18next.t(`form:preference.companies.${i}`))
+				);
 			}
 			function formConfirmation() {
 				const container = document.getElementById('formConfirmation');

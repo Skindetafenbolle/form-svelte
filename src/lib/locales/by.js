@@ -56,7 +56,8 @@ let by = {
 		},
 		preference: {
 			text: 'Абярыце да якой катэгорыі адпавядае ваша кампанія',
-			text_description: '(можна выбраць некалькі варыянтаў):'
+			text_description: '(можна выбраць некалькі варыянтаў):',
+			companies: ['ecofriendly', 'petfriendly', 'childfriendly', 'inclusive']
 		},
 		confirmation: {
 			text: 'Даю згоду на публікацыю прадстаўленых дадзеных на рэсурсах YOOHIVE.COM',
