@@ -144,7 +144,7 @@
 		const formCheckbox = window.showForm;
 		const switchLanguages = window.formLanguages;
 
-		btnSend.addEventListener('submit', sendForm);
+		form.addEventListener('submit', sendForm);
 		btnSend.addEventListener('click', checkForm);
 		workPageLanguage();
 		formShow();
