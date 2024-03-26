@@ -204,15 +204,15 @@
 			);
 		}
 
-		function transformFormData(formData) {
+			function transformFormData(formData) {
 			const transformedData = {
 				name: formData.contents.name,
 				address: formData.contents.address,
 				phones: [formData.contents.tell],
-				email: formData.contents.mail,
+				description: formData.contents.mail,
 				images: [],
 				schedule: formData.workDays,
-				services: [],
+				servicesData: '', 
 				affiliation: formData.workLike.nip,
 				socialMediaLinks: [formData.networkLinks],
 				specialTags: [],
@@ -245,7 +245,7 @@
 			console.log(formData)
 			console.log(transformedData)
 			try {
-				const response = await fetch('https://servicesserver.onrender.com/api/company/createCompany/site/withoutCategory', {
+				const response = await fetch('https://yoohive-api.onrender.com/api/company/createCompany/site/withoutCategory', {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json'
